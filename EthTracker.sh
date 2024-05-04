@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Redirect output to a log file
-exec >> /home/pi4r/Desktop/linuxCoursework/cron.log 2>&1
+exec >> /home/pi4r/Desktop/linuxCoursework/cron3.log 2>&1
 
 # Define the URL of the cryptocurrency website to scrape
-URL="https://coinmarketcap.com/currencies/bitcoin/?timestamp=$(date +%s)"
+URL="https://coinmarketcap.com/currencies/ethereum/?timestamp=$(date +%s)"
 
 # Fetch the webpage content using curl 
 HTML=$(curl -s "$URL")
@@ -16,7 +16,7 @@ PRICE=$(echo "$HTML" | grep -Eo '<span class="sc-f70bb44c-0 jxpCgO base-text">([
 PRICE=$(echo "$PRICE" | tr -d ',\$')
 
 # Print the extracted data
-echo "Bitcoin Price: $PRICE"
+echo "Ethereum Price: $PRICE"
 
 # Store the extracted data in a file
-echo "$(date +"%Y-%m-%d %H:%M:%S"),Bitcoin,$PRICE" >> /home/pi4r/Desktop/linuxCoursework/cryptocurrency_data.csv
+echo "$(date +"%Y-%m-%d %H:%M:%S"),Ethereum,$PRICE" >> /home/pi4r/Desktop/linuxCoursework/EthTracker.csv
